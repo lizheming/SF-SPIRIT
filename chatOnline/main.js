@@ -177,7 +177,7 @@ html = {
                 '</li>';
         callback($(li));
         /** 增加消息通知 **/
-        html.notification(data.name,data.text)
+        if(document.hidden) html.notification(data.name,data.text)
     },
     getRecent: function() {
         var c=arguments[0], 
