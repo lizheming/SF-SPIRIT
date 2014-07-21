@@ -1,5 +1,7 @@
 chrome.storage.sync.get('answerSearch', function(d) {
 if(+d.answerSearch) return false;
+if($('.user-data').length==0) return false;
+
 $('.user-data').each(function() {
 	if(/个回答/.test($('.user-data-title', $(this)).text()))
 		_t = $(this);
