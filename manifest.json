@@ -2,7 +2,7 @@
     "update_url": "https://clients2.google.com/service/update2/crx",
     "name" : "SF SPIRIT", 
     "description": "SegmentFault精灵用于自定义补完SF不完美的地方",
-    "version" : "0.0.1",
+    "version" : "0.0.2",
     "manifest_version" : 2,
     "icons": {
         "16": "./img/icon16.png",
@@ -42,7 +42,9 @@
                 "pasteUpload/main.js",
                 
                 "answerSearch/json2.js",
-                "answerSearch/main.js"
+                "answerSearch/main.js", 
+
+                "hotkey/main.js"
                 ], 
             "css"     : [
                 "chatOnline/chatroom.css", 
