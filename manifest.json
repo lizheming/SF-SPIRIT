@@ -1,0 +1,65 @@
+{
+    "update_url": "https://clients2.google.com/service/update2/crx",
+    "name" : "SF SPIRIT", 
+    "description": "SegmentFault精灵用于自定义补完SF不完美的地方",
+    "version" : "0.0.1",
+    "manifest_version" : 2,
+    "icons": {
+        "16": "./img/icon16.png",
+        "24": "./img/icon24.png",
+        "48": "./img/icon48.png",
+        "128": "./img/icon128.png"
+    },
+    "browser_action": {
+        "default_title": "SF Notification",
+        "default_icon": {
+            "19": "./img/icon24.png",
+            "38": "./img/icon48.png"
+        },
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": [
+            "notifier/js/lib.js", 
+            "notifier/js/background.js"
+        ]
+    },
+    "content_scripts" : [
+        {
+            "matches" : [
+                "http://segmentfault.com/*", 
+                "http://*.segmentfault.com/*"
+            ], 
+            "js"      : [
+                "jquery-2.0.3.min.js", 
+                "chatOnline/prettify.js", 
+                "chatOnline/SaeChannel.js", 
+                "chatOnline/Markdown.Converter.js", 
+                "chatOnline/emotion.js", 
+                "chatOnline/at.js", 
+                "chatOnline/main.js",
+
+                "pasteUpload/main.js",
+                
+                "answerSearch/json2.js",
+                "answerSearch/main.js"
+                ], 
+            "css"     : [
+                "chatOnline/chatroom.css", 
+                "chatOnline/desert.css"
+            ],
+            "run_at"  : "document_end"
+        }
+    ],
+    "permissions": [
+        "http://*/*", 
+        "notifications", 
+        "storage", 
+        "unlimitedStorage",
+        "tabs", 
+        "notifications", 
+        "cookies", 
+        "background"
+    ],
+    "options_page": "options.html"
+}

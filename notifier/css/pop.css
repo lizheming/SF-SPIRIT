@@ -1,0 +1,108 @@
+html,button,input,select,textarea
+{
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:13px;
+	color:#333;
+}
+
+ul
+{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+#msg-box
+{
+	width:320px;
+	top:40px;
+	right:0;
+	font-size:12px;
+	line-height:1.6;
+}
+
+#msg-box li
+{
+	border-bottom:1px solid #E6E6E6;
+	padding:8px 10px;
+	color:#666;
+	cursor:pointer;
+}
+
+#msg-box li:hover,#msg-box li:active
+{
+	background-color:#F3F3F3;
+}
+
+#msg-box li:hover .i-cancel,#msg-box li:active .i-cancel
+{
+	display:inline-block;
+}
+
+#msg-box li .i-cancel
+{
+	display:none;
+}
+
+#msg-box li span
+{
+	color:#BBB;
+}
+
+#msg-box li a
+{
+	color:#93b9ab;
+	text-shadow:0 1px 0 #FFF;
+	text-decoration:none;
+}
+
+#msg-box li cite
+{
+	display:block;
+	color:#009a61;
+	font-size:13px;
+	font-weight:700;
+	font-style:normal;
+}
+
+#msg-box .all
+{
+	padding:0;
+	text-align:center;
+	background-color:#EEE;
+}
+
+#msg-box .all a
+{
+	display:inline-block;
+	margin-top:-1px;
+	border-top:1px solid #DDD;
+	border-left:1px solid #FFF;
+	padding:4px 0 3px;
+	width:49.5%;
+	color:#555;
+	-webkit-box-shadow:inset 0 1px 0 #FFF;
+	-moz-box-shadow:inset 0 1px 0 #FFF;
+	box-shadow:inset 0 1px 0 #FFF;
+}
+
+#msg-box .all a:first-child
+{
+	border-right:1px solid #DDD;
+	border-left:none;
+}
+
+#msg-box .all a:hover
+{
+	background-color:#E9E9E9;
+}
+
+#msg-box .no-msg
+{
+	border-bottom:1px solid #E6E6E6;
+	text-align:center;
+	color:#999;
+	cursor:auto;
+}	
+
+
