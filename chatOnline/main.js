@@ -14,7 +14,7 @@ var user = (function() {
 }());
 
 channel = (function() {
-    var community = "segmentfault", root = "http://chatonline.sinaapp.com/", server=root+"?community="+community+"&act=";
+    var community = "segmentfault", root = "http://chatonline.vipsinaapp.com/", server=root+"?community="+community+"&act=";
     return {
         community: community,
         server: root,
