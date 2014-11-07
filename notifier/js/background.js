@@ -1,12 +1,11 @@
-setBadgeText('...');
-
 var option = getOption(),
 	cookie = getCookie(),
-	url = 'http://x.segmentfault.com/event/check?sfsess=' + cookie + '&_=' + +new Date(),
+	url = 'http://segmentfault.com',
 	pull = function() {
 		simpleRequest(url, function(data) {
-			var data = JSON.parse(data.slice(6, -1));
-			setBadgeText(data.data + '')
+			var h = document.createElement("html");
+			h.outerHTML = data;
+			setBageText(h.querySelector("title").match(/S/)[0]);
 		}, function() {
 			setBadgeText('x');
 		});

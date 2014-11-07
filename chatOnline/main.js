@@ -4,12 +4,14 @@ if(+d.chatOnline) return false;
 /** 获取用户信息 **/
 var user = (function() {
     /* {id:,uuid:,name:,url:,rank:} */
-    var session = $('#session');
-    if(session.length == 0) 
-        return {name:'游客'};
+    var u = $(".user");
+    if(u.length == 0) return {name: '游客'};
 
-    var user = $.parseJSON(session.attr('data-user'));
-    user.uuid = user.url.split('/').slice(-1)[0];
+    var user = {};
+    user.id = $("#SFUserId").val()/1;
+    user.name = $("a", u)[0].innerHTML;
+    user.uuid = $("a", u)[1].href.split('/').pop();
+
     return user;
 }());
 

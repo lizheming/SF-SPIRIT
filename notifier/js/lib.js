@@ -24,6 +24,8 @@ var getOption = function() {
             }
         }
         xhr.open('GET', url, true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        //xhr.setRequestHeader("Referer", "http://segmentfault.com/user/notifications");
         xhr.send(null);
     },
     setBadgeText = function(text) {

@@ -1,14 +1,14 @@
+chrome.browserAction.setBadgeText({
+            text: '123'
+        });
 chrome.storage.sync.get('answerSearch', function(d) {
 if(+d.answerSearch) return false;
-if($('.user-data').length==0) return false;
+if(location.pathname.split('/').pop() != "answers") return false;
 
-$('.user-data').each(function() {
-	if(/个回答/.test($('.user-data-title', $(this)).text()))
-		_t = $(this);
-})
-_t.prepend('<div class="answer-search head-search" style="float:right;margin:0;">'+
-	'<input type="text" class="form-control text-27 input-search" name="q" autocomplete="off" spellcheck="false" placeholder="搜索回答过的问题" style="z-index: 10;">'+
-    '<button class="btn-search" type="submit">搜索</button>'+
+var _t = $("h2.h4");
+_t.after('<div class="answer-search head-search" style="position: absolute;margin-top: -40px;margin-left: 100px;width: 237px;">'+
+	'<input type="text" class="form-control text-27 input-search" name="q" autocomplete="off" spellcheck="false" placeholder="搜索回答过的问题" style="display:inline-block;width:80%">'+
+    '<button class="btn-search" type="submit" style="margin-left:1%;line-height:30px;">搜索</button>'+
 '</div>');
 $(document).on('keydown', '.answer-search input', function(e) {if(e.keyCode == 13) $('.answer-search button').click();})
 
@@ -19,15 +19,15 @@ $('.answer-search button').click(function() {
 		return false;
 	}
 
-	var _m = $(this).parent().parent();
-	$('article', _m).remove();
-	_m.append('<span class="searching">Searching...</span>');
+	var _m = $(this).parent().next();
+	_m.html('<span class="searching">Searching...</span>');
+	_m.next().remove();
 
-	var _a = $('.user-data-title a', _t),
-		_n = _a.text(),
-		_o = Math.ceil(_n/10),
-		_u = _a.attr('href').split('segmentfault.com/u/')[1].split('/')[0],
-		prefixUrl = _a.attr('href')+'?page=';
+	var baseUrl = "http://segmentfault.com";
+	var _n = _t.text().match(/\d+/g)[0]/1,
+		_o = Math.ceil(_n/20),
+		_u = location.pathname.split('/')[1],
+		prefixUrl = baseUrl+location.pathname+'?page=';
 	var answers = localStorage['AnswersOf'+_u] ? JSON.parse(localStorage['AnswersOf'+_u]) : [];
 
 	(function getAnswersList(page) {
@@ -47,32 +47,40 @@ $('.answer-search button').click(function() {
 		$.get(prefixUrl+page, function(res) {
 			console.log('Load page '+page+' of answers list success!');
 
-			var articles = $('#main article', res);
-			if(/暂时没有回答/.test(articles[0].innerText))	return false;
+			var articles = $('.stream-list section', res);
+			if(articles.length == 0) return false;
 			(function getAnswer(article) {
-				if(article.attr('class') == 'page-nav' || answers.length >= _n) {
+				if(article.length==0) {
 					getAnswersList(page+1);
 					return false;
 				}
+				var answerUrl = baseUrl+$(".title a", article).attr('href');
+				$.ajax({
+					url: answerUrl,
+					type: "GET",
+					dataType: "html",
+					success: function(res) {
+						console.log('Load Answer #'+answerUrl+' success!');
+						answers.push({
+							url: answerUrl,
+							obj: article[0].outerHTML,
+							content: $(".answer", res).text(),
+							parent: {
+								title: $('.title a', article).text(),
+								url: baseUrl+$(".main .text-center .btn-primary", res).attr('href'),
+								content: $('.question', res).text()
+							},
+						});
 
-				var answerId = article.attr('id'), answerUrl = $('.profile-post-excerpt', article).attr('href'), answerHtml = article[0].outerHTML;
-				$.get(answerUrl, function(res) {
-					console.log('Load Answer #'+answerId+' success!');
-					answers.push({
-						id: answerId,
-						url: answerUrl,
-						obj: answerHtml,
-						content: $('#'+answerId, res).text(),
-						parent: {
-							title: $('h2 a', article).text(),
-							url: $('h2 a', article).attr('href'),
-							content: $('#question .post-content', res).text()
-						},
-					});
+					},
+					error: function() {
 
-					getAnswer(article.next());
-				})				
-			}($($('#main article', res)[0])));
+					},
+					complete: function() {
+						getAnswer(article.next());
+					}
+				})			
+			}($(articles[0])) );
 		})
 	}(1))
 });
