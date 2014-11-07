@@ -10,20 +10,6 @@
         "48": "./img/icon48.png",
         "128": "./img/icon128.png"
     },
-    "browser_action": {
-        "default_title": "SF Notification",
-        "default_icon": {
-            "19": "./img/icon24.png",
-            "38": "./img/icon48.png"
-        },
-        "default_popup": "popup.html"
-    },
-    "background": {
-        "scripts": [
-            "notifier/js/lib.js", 
-            "notifier/js/background.js"
-        ]
-    },
     "content_scripts" : [
         {
             "matches" : [
