@@ -10,6 +10,18 @@
         "48": "./img/icon48.png",
         "128": "./img/icon128.png"
     },
+    "browser_action": {
+        "default_title": "SF SPIRIT",
+        "default_icon": {
+            "19": "img/icon24.png",
+            "38": "img/icon48.png"
+        }
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
     "content_scripts" : [
         {
             "matches" : [
@@ -29,7 +41,13 @@
                 
                 "answerSearch/main.js", 
 
-                "hotkey/main.js"
+                "hotkey/main.js",
+
+                "reputation-chart-3d/obelisk.js",
+                "reputation-chart-3d/iso.js",
+                "reputation-chart-3d/main.js",
+
+                "hidden-notifer/main.js"
                 ], 
             "css"     : [
                 "chatOnline/chatroom.css", 
@@ -39,6 +57,8 @@
         }
     ],
     "permissions": [
+        "webRequest",
+        "webRequestBlocking",
         "http://*/*", 
         "notifications", 
         "storage", 

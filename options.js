@@ -8,6 +8,16 @@ window.onload = function() {
         if(d.hasOwnProperty("pasteUpload"))
             d.pasteUpload == form.pasteUpload[0].value ? form.pasteUpload[0].checked = true : form.pasteUpload[1].checked = true;
     })
+
+    chrome.storage.sync.get("reputationChart", function(d) {
+        if(d.hasOwnProperty("reputationChart"))
+            d.pasteUpload == form.pasteUpload[0].value ? form.pasteUpload[0].checked = true : form.pasteUpload[1].checked = true;
+    })
+
+    chrome.storage.sync.get("hiddenNotifer", function(d) {
+        if(d.hasOwnProperty("hiddenNotifer"))
+            d.pasteUpload == form.pasteUpload[0].value ? form.pasteUpload[0].checked = true : form.pasteUpload[1].checked = true;
+    })
     chrome.storage.sync.get("chatOnline", function(d) {
         if(d.hasOwnProperty("chatOnline"))
             d.chatOnline == form.chatOnline[0].value ? form.chatOnline[0].checked = true : form.chatOnline[1].checked = true;
@@ -48,7 +58,9 @@ document.querySelector('button#save').onclick = function() {
         msgbg: form.msgbg.value,
         sendkey: form.sendkey.value,
         aero: form.aero[0].checked ? 0 : 1,
-        opacity: form.opacity.value / 100
+        opacity: form.opacity.value / 100,
+        hiddenNotifer: form.hiddenNotifer[0].checked ? 0 : 1,
+        reputationChart: form.reputationChart[0].checked ? 0 : 1
     }, function() {
         document.querySelector('#message').innerHTML = "保存成功!";
         setTimeout(function(){document.querySelector('#message').innerHTML = ''}, 500);

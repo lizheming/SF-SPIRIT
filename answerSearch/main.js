@@ -1,6 +1,3 @@
-chrome.browserAction.setBadgeText({
-            text: '123'
-        });
 chrome.storage.sync.get('answerSearch', function(d) {
 if(+d.answerSearch) return false;
 if(location.pathname.split('/').pop() != "answers") return false;

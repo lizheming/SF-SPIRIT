@@ -2,10 +2,10 @@ chrome.storage.sync.get('pasteUpload', function(d) {
 if(+d.pasteUpload) return false;
 
 document.querySelector("#answerEditor") && document.querySelector("#answerEditor").addEventListener('paste', function(e) {
-    e.preventDefault();
     var clipboard = e.clipboardData;
     for(var i=0,len=clipboard.items.length; i<len; i++) {
         if(clipboard.items[i].kind == 'file' || clipboard.items[i].type.indexOf('image') > -1) {
+            e.preventDefault();
             //打开上传窗口
             document.querySelector("#wmd-image-button").click();
             //增加正在上传动画
