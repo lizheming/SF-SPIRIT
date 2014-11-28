@@ -4,11 +4,6 @@ window.onload = function() {
         if(d.hasOwnProperty('answerSearch')) 
             d.answerSearch == form.answerSearch[0].value ? form.answerSearch[0].checked = true : form.answerSearch[1].checked = true;
     })
-    chrome.storage.sync.get("pasteUpload", function(d) {
-        if(d.hasOwnProperty("pasteUpload"))
-            d.pasteUpload == form.pasteUpload[0].value ? form.pasteUpload[0].checked = true : form.pasteUpload[1].checked = true;
-    })
-
     chrome.storage.sync.get("reputationChart", function(d) {
         if(d.hasOwnProperty("reputationChart"))
             d.pasteUpload == form.pasteUpload[0].value ? form.pasteUpload[0].checked = true : form.pasteUpload[1].checked = true;
@@ -53,7 +48,6 @@ document.querySelector('button#save').onclick = function() {
     var form = document.forms[0];
     chrome.storage.sync.set({
         answerSearch: form.answerSearch[0].checked ? 0 : 1,
-        pasteUpload: form.pasteUpload[0].checked ? 0  : 1,
         chatOnline: form.chatOnline[0].checked ? 0 : 1,
         msgbg: form.msgbg.value,
         sendkey: form.sendkey.value,
