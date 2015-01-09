@@ -2,8 +2,37 @@
 	content:"预览区";
 	display:block;
 	text-align:right;
+	margin-bottom:10px;
 	border-bottom:1px solid rgb(204, 204, 204);
 }
 .widget-comments__preview {
 	margin-top: 10px;
+}
+
+.widget-comments-emoj, .widget-comments-emoj-list span {
+	cursor: pointer;
+	-webkit-user-select:none;
+}
+.widget-comments-emoj-list {
+  font-size: 9px;
+  overflow-y: auto;
+  background: rgb(255, 255, 255);
+  margin-top: -425px;
+  height: 400px;
+  width: 600px;
+  padding: 20px 10px;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 5px;
+  position:relative;
+  float:right;
+}
+.widget-comments-emoj-list span:hover {
+  background: rgb(238, 238, 238);
+}
+.widget-comments-emoj-list span {
+  padding: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: 1px solid rgb(238, 238, 238);
+  float: left;
 }
