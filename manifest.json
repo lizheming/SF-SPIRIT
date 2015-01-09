@@ -45,11 +45,15 @@
                 "reputation-chart-3d/iso.js",
                 "reputation-chart-3d/main.js",
 
-                "hidden-notifer/main.js"
+                "hidden-notifer/main.js",
+
+                "cmt-enhanced/main.js"
                 ], 
             "css"     : [
                 "chatOnline/chatroom.css", 
-                "chatOnline/desert.css"
+                "chatOnline/desert.css",
+
+                "cmt-enhanced/cmt-enhanced.css"
             ],
             "run_at"  : "document_end"
         }
