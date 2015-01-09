@@ -1,3 +1,5 @@
+chrome.storage.sync.get('cmtEnhanced', function(d) {
+if(+d.cmtEnhanced) return false;
 switch(location.pathname.split("/")[1] || "") {
 	case "blog":
 		var s = document.createElement("script")
@@ -55,3 +57,4 @@ switch(location.pathname.split("/")[1] || "") {
 		document.body.appendChild(cmt);	
 	break;	
 }
+})
