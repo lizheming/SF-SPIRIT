@@ -6,12 +6,15 @@ window.onload = function() {
     })
     chrome.storage.sync.get("reputationChart", function(d) {
         if(d.hasOwnProperty("reputationChart"))
-            d.pasteUpload == form.pasteUpload[0].value ? form.pasteUpload[0].checked = true : form.pasteUpload[1].checked = true;
+            d.reputationChart == form.reputationChart[0].value ? form.reputationChart[0].checked = true : form.reputationChart[1].checked = true;
     })
-
+    chrome.storage.sync.get("cmtEnhanced", function(d) {
+        if(d.hasOwnProperty("cmtEnhanced"))
+            d.cmtEnhanced == form.cmtEnhanced[0].value ? form.cmtEnhanced[0].checked = true : form.cmtEnhanced[1].checked = true;
+    })
     chrome.storage.sync.get("hiddenNotifer", function(d) {
         if(d.hasOwnProperty("hiddenNotifer"))
-            d.pasteUpload == form.pasteUpload[0].value ? form.pasteUpload[0].checked = true : form.pasteUpload[1].checked = true;
+            d.hiddenNotifer == form.hiddenNotifer[0].value ? form.hiddenNotifer[0].checked = true : form.hiddenNotifer[1].checked = true;
     })
     chrome.storage.sync.get("chatOnline", function(d) {
         if(d.hasOwnProperty("chatOnline"))
@@ -54,7 +57,8 @@ document.querySelector('button#save').onclick = function() {
         aero: form.aero[0].checked ? 0 : 1,
         opacity: form.opacity.value / 100,
         hiddenNotifer: form.hiddenNotifer[0].checked ? 0 : 1,
-        reputationChart: form.reputationChart[0].checked ? 0 : 1
+        reputationChart: form.reputationChart[0].checked ? 0 : 1,
+        cmtEnhanced: form.cmtEnhanced[0].checked ? 0 : 1
     }, function() {
         document.querySelector('#message').innerHTML = "保存成功!";
         setTimeout(function(){document.querySelector('#message').innerHTML = ''}, 500);
