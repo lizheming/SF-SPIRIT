@@ -12,10 +12,6 @@ window.onload = function() {
         if(d.hasOwnProperty("cmtEnhanced"))
             d.cmtEnhanced == form.cmtEnhanced[0].value ? form.cmtEnhanced[0].checked = true : form.cmtEnhanced[1].checked = true;
     })
-    chrome.storage.sync.get("hiddenNotifer", function(d) {
-        if(d.hasOwnProperty("hiddenNotifer"))
-            d.hiddenNotifer == form.hiddenNotifer[0].value ? form.hiddenNotifer[0].checked = true : form.hiddenNotifer[1].checked = true;
-    })
     chrome.storage.sync.get("chatOnline", function(d) {
         if(d.hasOwnProperty("chatOnline"))
             d.chatOnline == form.chatOnline[0].value ? form.chatOnline[0].checked = true : form.chatOnline[1].checked = true;
@@ -34,6 +30,16 @@ window.onload = function() {
         if(d.hasOwnProperty("opacity")) {
             form.opacity.value = d.opacity * 100;
             form.opacity.nextElementSibling.innerText = d.opacity;
+        }
+    })
+    chrome.storage.sync.get("customCSS", function(d) {
+        if(d.hasOwnProperty("customCSS")) {
+            form['custom-css'].value = d.customCSS;
+        }
+    })
+    chrome.storage.sync.get("customJS", function(d) {
+        if(d.hasOwnProperty("customJS")) {
+            form['custom-js'].value = d.customJS;
         }
     })
     form.onsubmit = function() {return false;}
@@ -56,9 +62,10 @@ document.querySelector('button#save').onclick = function() {
         sendkey: form.sendkey.value,
         aero: form.aero[0].checked ? 0 : 1,
         opacity: form.opacity.value / 100,
-        hiddenNotifer: form.hiddenNotifer[0].checked ? 0 : 1,
         reputationChart: form.reputationChart[0].checked ? 0 : 1,
-        cmtEnhanced: form.cmtEnhanced[0].checked ? 0 : 1
+        cmtEnhanced: form.cmtEnhanced[0].checked ? 0 : 1,
+        customCSS: form['custom-css'].value,
+        customJS: form['custom-js'].value
     }, function() {
         document.querySelector('#message').innerHTML = "保存成功!";
         setTimeout(function(){document.querySelector('#message').innerHTML = ''}, 500);

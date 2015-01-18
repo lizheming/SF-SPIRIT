@@ -2,8 +2,8 @@ chrome.storage.sync.get('cmtEnhanced', function(d) {
 if(+d.cmtEnhanced) return false;
 switch(location.pathname.split("/")[1] || "") {
 	case "blog":
-		var s = document.createElement("script")
-		s.src = "//static.segmentfault.com/build/qa/js/question.js";
+		var s = document.createElement("script");
+		s.src = "//imnerd.org/lab/Markdown.Converter.js";
 		document.body.appendChild(s);
 	case "q":
 		var cmt = document.createElement("script");
@@ -12,7 +12,7 @@ switch(location.pathname.split("/")[1] || "") {
 		window.onload = function() {\
 		(function cmtEnhanced(widgets) {\
 			var widgets = [].slice.call(widgets),\
-				converter = require("pagedown_converter").Converter,\
+				converter = Markdown.Converter,\
 				editor = new converter,\
 				emojList = document.createElement("div");\
 			\
