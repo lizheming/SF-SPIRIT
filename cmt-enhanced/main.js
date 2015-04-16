@@ -1,9 +1,10 @@
 chrome.storage.sync.get('cmtEnhanced', function(d) {
 if(+d.cmtEnhanced) return false;
 switch(location.pathname.split("/")[1] || "") {
-	case "blog":
+	case "a":
 		var s = document.createElement("script");
-		s.src = "//imnerd.org/lab/Markdown.Converter.js";
+		s.src = "http://static.segmentfault.com/build/qa/js/question.js";
+		s.async = true;
 		document.body.appendChild(s);
 	case "q":
 		var cmt = document.createElement("script");
@@ -12,8 +13,6 @@ switch(location.pathname.split("/")[1] || "") {
 		window.onload = function() {\
 		(function cmtEnhanced(widgets) {\
 			var widgets = [].slice.call(widgets),\
-				converter = Markdown.Converter,\
-				editor = new converter,\
 				emojList = document.createElement("div");\
 			\
 		    emojList.className = "widget-comments-emoj-list display";\
@@ -27,10 +26,10 @@ switch(location.pathname.split("/")[1] || "") {
 		        	widgetEmojList = emojList.cloneNode(true);\
 				\
 		        preview.className = "col-md-12 widget-comments__preview";\
-		        emoj.className = "col-md-2 widget-comments-emoj";\
+		        emoj.className = "widget-comments-emoj";\
 		        emoj.innerHTML = ">ω<";\
 				\
-		        widget.appendChild(emoj);\
+		        widget.querySelector(".mt10").appendChild(emoj);\
 		        widget.appendChild(widgetEmojList);\
 		        widget.appendChild(preview);\
 		        widgetEmojList.addEventListener("click", function(e) {\
@@ -40,7 +39,11 @@ switch(location.pathname.split("/")[1] || "") {
 					textarea.focus();\
 		        });\
 		        textarea.addEventListener("input", function(e) {\
-		            preview.innerHTML = editor.makeHtml(this.value)\
+		        	var that = this;\
+		        	require(["pagedown_converter"], function(Markdown) {\
+						var editor = new Markdown.Converter;\
+						preview.innerHTML = editor.makeHtml(that.value)\
+		        	})\
 		        });\
 		        textarea.addEventListener("keydown", function(e) {\
 		            if (e.ctrlKey && e.keyCode === 13) preview.innerHTML = ""\
@@ -49,7 +52,7 @@ switch(location.pathname.split("/")[1] || "") {
 		            preview.innerHTML = ""\
 		        });\
 				emoj.addEventListener("click", function() {\
-					this.nextElementSibling.classList.toggle("display")\
+					widgetEmojList.classList.toggle("display")\
 				})\
 		    })\
 		})(document.querySelectorAll(".widget-comments__form"))\

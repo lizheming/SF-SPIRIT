@@ -8,8 +8,14 @@
 .widget-comments__preview {
 	margin-top: 10px;
 }
-
+.widget-comments__form .mt10 a{
+  display: block;
+  width:30px;
+  float:left;
+}
 .widget-comments-emoj, .widget-comments-emoj-list span {
+  float:right;
+  line-height: 40px;
 	cursor: pointer;
 	-webkit-user-select:none;
 }

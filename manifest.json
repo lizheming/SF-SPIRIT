@@ -35,7 +35,7 @@
         {
             "matches" : [
                 "http://segmentfault.com/q/*",
-                "http://segmentfault.com/blog/*"
+                "http://segmentfault.com/a/*"
             ],
             "js"      : [
                 "cmt-enhanced/main.js"
